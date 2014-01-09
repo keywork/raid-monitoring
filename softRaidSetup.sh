@@ -6,6 +6,7 @@ echo "command[check_linux_raid]=/usr/lib64/nagios/plugins/check_linux_raid" >> /
 sed -i 's/127.0.0.1/208.167.226.249/g' /etc/nagios/nrpe.cfg 
 sed -i 's/Defaults    requiretty/#Defaults  requiretty/g' /etc/sudoers 
 iptables -I INPUT -p tcp -m tcp --dport 5666 -j REJECT 
-iptables -I INPUT -p tcp -m tcp -s 208.167.226.249 --dport 5666 -j ACCEPT 
+iptables -I INPUT -p tcp -m tcp -s 208.167.226.249 --dport 5666 -j ACCEPT
+service iptables save
 service nrpe start 
 chkconfig nrpe on
